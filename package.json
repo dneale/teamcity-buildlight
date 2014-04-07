@@ -1,0 +1,26 @@
+{
+  "name": "teamcity-buildlight",
+  "version": "0.1.0",
+  "description": "A TeamCity build light that works on Raspberry Pi as well as Mac, Linux and PC",
+  "dependencies": {
+    "delcom-indicator": "0.1.x",
+    "request": "2.34.x",
+    "enum": "0.2.x"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "mocha": "1.18.x",
+    "should": "3.1.x",
+    "grunt-mocha-test": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SouthsideSoftware/teamcity-buildlight"
+  },
+    "engines": {
+        "node": "v0.10.x"
+    },
+  "author": "Southside Software LLC <info@southsidesoft.com> (http://www.southsidesoft.com)",
+  "license": "MIT",
+  "keywords": ["teamcity", "delcom", "buildlight"]
+}
