@@ -16,7 +16,11 @@ var configurations = [];
 config.configurations.forEach(function poll(element, index, array) {
     configurations.push(new Configuration(element));
 
-    request.get(config.baseUrl + 'app/rest/builds/buildType:' + element.id + ',branch:default:any,running:any',
+
+});
+
+configurations.forEach(function poll(configuration, index, array) {
+    request.get(config.baseUrl + 'app/rest/builds/buildType:' + configuration.id + ',branch:default:any,running:any',
         {
             'auth': {
                 'user': config.user,
@@ -28,11 +32,8 @@ config.configurations.forEach(function poll(element, index, array) {
         function(error, response, body){
             if (!error && response.statusCode == 200){
                 console.log(body);
+                console.log(configuration.checkStatus(body))
             }
         });
-});
-
-configurations.forEach(function poll(configuration, index, array) {
-    console.log(configuration.checkStatus());
 })
 

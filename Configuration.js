@@ -1,6 +1,8 @@
 var status = require('./buildStatus');
 
 function Configuration(config){
+    this.id = config.id;
+    this.canTurnRed = config.canTurnRed;
 
 }
 
