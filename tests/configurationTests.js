@@ -150,4 +150,75 @@ describe('Configuration', function() {
         var configuration = new Configuration(config);
         configuration.checkStatus(teamCityStatus).should.equal(status.status.SUCCESS);
     });
+
+    it('should return failure if build failed', function () {
+        var config = {
+            'baseUrl': 'http://build.southsidesoft.com:81/',
+            'user': 'yyy',
+            'pass': 'xxx',
+            'configurations': [
+                {'id': 'bt2', 'canTurnRed': true },
+                {'id': 'bt17', 'canTurnRed': false }
+            ]
+        };
+
+        var teamCityStatus =    { id: 13734,
+            buildTypeId: 'Autobahn_SeleniumTests',
+            number: '113',
+            status: 'FAILURE',
+            state: 'finished',
+            branchName: 'refs/heads/Development',
+            defaultBranch: true,
+            href: '/app/rest/builds/id:13734',
+            webUrl: 'http://173.1.25.130:81/viewLog.html?buildId=13734&buildTypeId=Autobahn_SeleniumTests',
+            statusText: 'Compilation error: app\\Eleanor.UI.Web\\Eleanor.UI.Web.csproj (new)',
+            buildType:
+            { id: 'Autobahn_SeleniumTests',
+                name: 'Selenium Tests',
+                description: 'Runs all tests and prepares deployment packages',
+                projectName: 'Autobahn',
+                projectId: 'Autobahn',
+                href: '/app/rest/buildTypes/id:Autobahn_SeleniumTests',
+                webUrl: 'http://173.1.25.130:81/viewType.html?buildTypeId=Autobahn_SeleniumTests' },
+            tags: { tag: [] },
+            queuedDate: '20140407T163008-0500',
+            startDate: '20140407T163009-0500',
+            finishDate: '20140407T163100-0500',
+            triggered:
+            { type: 'unknown',
+                details: 'Schedule Trigger',
+                date: '20140407T163008-0500' },
+            lastChanges: { count: 1, change: [ [Object] ] },
+            changes:
+            { count: 24,
+                href: '/app/rest/changes?locator=build:(id:13734)' },
+            revisions: { revision: [ [Object] ] },
+            agent:
+            { id: 4,
+                name: 'dev-ba-2',
+                typeId: 4,
+                href: '/app/rest/agents/id:4' },
+            problemOccurrences:
+            { count: 2,
+                href: '/app/rest/problemOccurrences?locator=build:(id:13734)',
+                default: false },
+            artifacts: { href: '/app/rest/builds/id:13734/artifacts/children' },
+            relatedIssues: { href: '/app/rest/builds/id:13734/relatedIssues' },
+            properties:
+            { count: 7,
+                property:
+                    [ [Object],
+                        [Object],
+                        [Object],
+                        [Object],
+                        [Object],
+                        [Object],
+                        [Object] ] },
+            attributes: { count: 1, entry: [ [Object] ] },
+            statistics: { href: '/app/rest/builds/id:13734/statistics' } };
+
+
+        var configuration = new Configuration(config);
+        configuration.checkStatus(teamCityStatus).should.equal(status.status.FAILURE);
+    });
 });

@@ -16,6 +16,9 @@ Configuration.prototype.checkStatus = function(teamCityStatus) {
     if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'SUCCESS'){
         return status.status.SUCCESS;
     }
+    if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'FAILURE'){
+        return status.status.FAILURE;
+    }
 
     return status.status.UNKNOWN;
 }

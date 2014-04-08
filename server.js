@@ -4,10 +4,11 @@ var Configuration = require('./Configuration');
 var config = {
     'baseUrl': 'http://build.southsidesoft.com:81/',
     'user': 'tcabanski',
-    'pass': 'xxx',
+    'pass': 'bluehook66691',
     'configurations': [
         {'id': 'bt2', 'canTurnRed': true },
-        {'id': 'bt17', 'canTurnRed': false }
+        {'id': 'bt17', 'canTurnRed': false },
+        {'id': 'Autobahn_SeleniumTests', canTurnRed: false }
     ]
 };
 
@@ -32,7 +33,7 @@ configurations.forEach(function poll(configuration, index, array) {
         function(error, response, body){
             if (!error && response.statusCode == 200){
                 console.log(body);
-                //console.log(configuration.checkStatus(body))
+                console.log(configuration.checkStatus(body))
             }
         });
 })
