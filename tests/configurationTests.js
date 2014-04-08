@@ -4,6 +4,16 @@ var status = require('../buildStatus');
 
 describe('Configuration', function() {
     it('should return running if build is running', function () {
+        var config = {
+            'baseUrl': 'http://build.southsidesoft.com:81/',
+            'user': 'yyy',
+            'pass': 'xxx',
+            'configurations': [
+                {'id': 'bt2', 'canTurnRed': true },
+                {'id': 'bt17', 'canTurnRed': false }
+            ]
+        };
+
         var teamCityStatus =    { id: 13652,
             buildTypeId: 'bt2',
             number: '6029',
@@ -66,11 +76,21 @@ describe('Configuration', function() {
             statistics: { href: '/app/rest/builds/id:13652/statistics' } };
 
 
-        var configuration = new Configuration();
+        var configuration = new Configuration(config);
         configuration.checkStatus(teamCityStatus).should.equal(status.status.BUILDING);
     });
 
-    it('should return running if build is running', function () {
+    it('should return success if build is successful', function () {
+        var config = {
+            'baseUrl': 'http://build.southsidesoft.com:81/',
+            'user': 'yyy',
+            'pass': 'xxx',
+            'configurations': [
+                {'id': 'bt2', 'canTurnRed': true },
+                {'id': 'bt17', 'canTurnRed': false }
+            ]
+        };
+
         var teamCityStatus =    { id: 13701,
             buildTypeId: 'bt2',
             number: '6041',
@@ -127,7 +147,7 @@ describe('Configuration', function() {
             statistics: { href: '/app/rest/builds/id:13701/statistics' } };
 
 
-        var configuration = new Configuration();
-        configuration.checkStatus(teamCityStatus).should.equal(status.status.BUILDING);
+        var configuration = new Configuration(config);
+        configuration.checkStatus(teamCityStatus).should.equal(status.status.SUCCESS);
     });
 });

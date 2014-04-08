@@ -7,10 +7,17 @@ function Configuration(config){
 }
 
 Configuration.prototype.checkStatus = function(teamCityStatus) {
+    if (teamCityStatus === undefined){
+        return status.status.UNKNOWN;
+    }
     if (teamCityStatus.state === 'running'){
         return status.status.BUILDING;
     }
-    return status.status.FAILURE;
+    if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'SUCCESS'){
+        return status.status.SUCCESS;
+    }
+
+    return status.status.UNKNOWN;
 }
 
 module.exports = Configuration;

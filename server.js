@@ -32,7 +32,7 @@ configurations.forEach(function poll(configuration, index, array) {
         function(error, response, body){
             if (!error && response.statusCode == 200){
                 console.log(body);
-                console.log(configuration.checkStatus(body))
+                //console.log(configuration.checkStatus(body))
             }
         });
 })
