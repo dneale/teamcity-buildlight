@@ -3,8 +3,8 @@ var Configuration = require('./Configuration');
 
 var config = {
     'baseUrl': 'http://build.southsidesoft.com:81/',
-    'user': 'tcabanski',
-    'pass': 'bluehook66691',
+    'user': 'xxx',
+    'pass': 'yyy',
     'configurations': [
         {'id': 'bt2', 'canTurnRed': true },
         {'id': 'bt17', 'canTurnRed': false },
