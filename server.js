@@ -1,5 +1,6 @@
 var request = require('request');
-var Configuration = require('./Configuration');
+var ConfigurationCollection = require('./ConfigurationCollection');
+var TeamCityStatusChecker = require('./TeamCityStatusChecker');
 
 var config = {
     'baseUrl': 'http://build.southsidesoft.com:81/',
@@ -12,29 +13,10 @@ var config = {
     ]
 };
 
-var configurations = [];
+var configurations = new ConfigurationCollection(config, new TeamCityStatusChecker());
+configurations.checkStatus();
 
-config.configurations.forEach(function poll(element, index, array) {
-    configurations.push(new Configuration(element));
-
-
-});
-
-configurations.forEach(function poll(configuration, index, array) {
-    request.get(config.baseUrl + 'app/rest/builds/buildType:' + configuration.id + ',branch:default:any,running:any',
-        {
-            'auth': {
-                'user': config.user,
-                'pass': config.pass,
-                'sendImmediately': false
-            },
-            'json': true
-        },
-        function(error, response, body){
-            if (!error && response.statusCode == 200){
-                console.log(body);
-                console.log(configuration.checkStatus(body))
-            }
-        });
-})
+setInterval(function(){
+    configurations.checkStatus();
+}, 10 * 1000);
 
