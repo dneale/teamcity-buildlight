@@ -1,11 +1,32 @@
 var request = require('request');
+var q = require('q');
+
+function promisify(nodeAsyncFn, context) {
+    return function() {
+        var defer = q.defer()
+            , args = Array.prototype.slice.call(arguments);
+
+        args.push(function(err, val) {
+            if (err !== null) {
+                return defer.reject(err);
+            }
+
+            return defer.resolve(val);
+        });
+
+        nodeAsyncFn.apply(context || {}, args);
+
+        return defer.promise;
+    };
+};
 
 function TeamCityStatusChecker(){
 
 }
 
 TeamCityStatusChecker.prototype.checkStatus = function(configuration, baseUrl, user, pass) {
-    request.get(baseUrl + 'app/rest/builds/buildType:' + configuration.id + ',branch:default:any,running:any',
+    var get = promisify(request.get())
+    get(baseUrl + 'app/rest/builds/buildType:' + configuration.id + ',branch:default:any,running:any',
         {
             'auth': {
                 'user': user,
