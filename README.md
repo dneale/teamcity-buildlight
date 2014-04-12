@@ -1,6 +1,7 @@
 #teamcity-buildlight
 
-A node.js build light for TeamCity that works on Raspberry Pi as well as Linux, Mac and PC.  The light will be solid
+A node.js build light for TeamCity that works on Raspberry Pi as well as Linux, Mac and PC.  Drives a
+[Declom Visual Indicator](http://www.delcomproducts.com/products_usblmp.asp).  The light will be solid
 green if all monitored configurations that have canTurnRed: true have been built successfully and nothing is currently
 building.  The light will blink blue if any monitored configuration is building.  If any monitored configuration with
 canTurnRed: true has failed and nothing is building, the light will blink red.
@@ -11,7 +12,7 @@ you want to monitor.  You can obtain the build configuration id on the general s
 editor.  If you want failed builds for a given configuration make the light blink red, set canTurnRed: true in
 the config file.
 
-You may want to set canTurnRed:false for configuration designed to build unstable brances.
+You may want to set canTurnRed:false for configuration designed to build unstable branches.
 
 ##Supported Platforms
 This application is known to work on Mac and Linux platforms where [node-hid](https://www.npmjs.org/package/node-hid) can
