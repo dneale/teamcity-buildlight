@@ -1,6 +1,10 @@
 var request = require('request');
 var ConfigurationCollection = require('./ConfigurationCollection');
 var TeamCityStatusChecker = require('./TeamCityStatusChecker');
+var DelcomIndicator = require('delcom-indicator');
+
+var pollInterval = 10 * 1000;
+var lightDelay = 5 * 1000;
 
 var config = {
     'baseUrl': 'http://build.southsidesoft.com:81/',
@@ -13,10 +17,22 @@ var config = {
     ]
 };
 
-var configurations = new ConfigurationCollection(config, new TeamCityStatusChecker());
-configurations.checkStatus();
+var delcomIndicator = new DelcomIndicator();
+delcomIndicator.turnOff();
+
+var configurations = new ConfigurationCollection(config, new TeamCityStatusChecker(), delcomIndicator);
+checkStatusAndSetLight();
 
 setInterval(function(){
+    checkStatusAndSetLight();
+}, pollInterval);
+
+function checkStatusAndSetLight(){
     configurations.checkStatus();
-}, 10 * 1000);
+    setInterval(function(){
+        configurations.displayStatus();
+    }, lightDelay);
+}
+
+
 

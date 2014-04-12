@@ -6,7 +6,8 @@
     "delcom-indicator": "0.1.x",
     "request": "2.34.x",
     "enum": "0.2.x",
-    "q": "1.0.x"
+    "async": "0.7.x"
+
   },
   "devDependencies": {
     "grunt": "0.4.x",

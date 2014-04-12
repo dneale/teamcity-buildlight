@@ -19,6 +19,8 @@ Configuration.prototype.checkStatus = function(teamCityStatus) {
     } else if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'FAILURE'){
         this.lastStatus = status.status.FAILURE;
     }
+
+    return this.lastStatus;
 }
 
 module.exports = Configuration;
