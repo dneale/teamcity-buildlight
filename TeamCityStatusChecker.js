@@ -17,6 +17,8 @@ TeamCityStatusChecker.prototype.checkStatus = function(configuration, baseUrl, u
         function(error, response, body){
             if (!error && response.statusCode == 200){
                 console.log(configuration.checkStatus(body));
+            } else {
+                console.log("Error on " + configuration.id + " status " + response.statusCode + " " + error)
             }
         });
 }

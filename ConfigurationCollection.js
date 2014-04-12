@@ -9,6 +9,7 @@ function ConfigurationCollection(config, teamCityStatusChecker, delcomIndicator)
     this.configurations = [];
     this.teamCityStatusChecker = teamCityStatusChecker;
     this.delcomIndicator = delcomIndicator;
+    this.lastStatus = undefined;
 
     var self = this;
 
@@ -46,21 +47,25 @@ ConfigurationCollection.prototype.displayStatus = function() {
         }
     }
 
-    if (statusToDisplay === buildStatus.status.UNKNOWN){
+    if (statusToDisplay === buildStatus.status.UNKNOWN && this.lastStatus !== buildStatus.status.UNKNOWN){
+        this.lastStatus = buildStatus.status.UNKNOWN;
         if (this.delcomIndicator !== undefined) {
             this.delcomIndicator.turnOff();
         }
-    } else if (statusToDisplay === buildStatus.status.BUILDING){
+    } else if (statusToDisplay === buildStatus.status.BUILDING && this.lastStatus !== buildStatus.status.BUILDING){
+        this.lastStatus = buildStatus.status.BUILDING;
         if (this.delcomIndicator !== undefined) {
             this.delcomIndicator.turnOff();
             this.delcomIndicator.flashBlue();
         }
-    } else if (statusToDisplay === buildStatus.status.FAILURE){
+    } else if (statusToDisplay === buildStatus.status.FAILURE && this.lastStatus !== buildStatus.status.FAILURE){
+        this.lastStatus = buildStatus.status.FAILURE;
         if (this.delcomIndicator !== undefined) {
             this.delcomIndicator.turnOff();
             this.delcomIndicator.flashRed();
         }
-    } else if (statusToDisplay === buildStatus.status.SUCCESS){
+    } else if (statusToDisplay === buildStatus.status.SUCCESS && this.lastStatus !== buildStatus.status.SUCCESS){
+        this.lastStatus = buildStatus.status.SUCCESS;
         if (this.delcomIndicator !== undefined) {
             this.delcomIndicator.turnOff();
             this.delcomIndicator.solidGreen();
