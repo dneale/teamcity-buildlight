@@ -1,0 +1,19 @@
+{
+    "baseUrl": "http://myteamcity/",
+    "user": "xxx",
+    "pass": "yyy",
+    "configurations": [
+        {
+            "id": "bt2",
+            "canTurnRed": true
+        },
+        {
+            "id": "bt17",
+            "canTurnRed": false
+        },
+        {
+            "id": "Autobahn_SeleniumTests",
+            "canTurnRed": false
+        }
+    ]
+}
