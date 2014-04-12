@@ -3,24 +3,22 @@ var status = require('./buildStatus');
 function Configuration(config){
     this.id = config.id;
     this.canTurnRed = config.canTurnRed;
+    this.lastStatus = status.status.UNKNOWN;
 
 }
 
 Configuration.prototype.checkStatus = function(teamCityStatus) {
-    if (teamCityStatus === undefined){
-        return status.status.UNKNOWN;
-    }
-    if (teamCityStatus.state === 'running'){
-        return status.status.BUILDING;
-    }
-    if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'SUCCESS'){
-        return status.status.SUCCESS;
-    }
-    if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'FAILURE'){
-        return status.status.FAILURE;
-    }
+    this.lastStatus = status.status.UNKNOWN;
 
-    return status.status.UNKNOWN;
+    if (teamCityStatus === undefined){
+        this.lastStatus = status.status.UNKNOWN;
+    } else if (teamCityStatus.state === 'running'){
+        this.lastStatus = status.status.BUILDING;
+    } else if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'SUCCESS'){
+        this.lastStatus = status.status.SUCCESS;
+    } else if (teamCityStatus.state === 'finished' && teamCityStatus.status === 'FAILURE'){
+        this.lastStatus = status.status.FAILURE;
+    }
 }
 
 module.exports = Configuration;

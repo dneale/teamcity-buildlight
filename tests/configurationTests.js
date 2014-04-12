@@ -3,7 +3,7 @@ var should = require('should');
 var status = require('../buildStatus');
 
 describe('Configuration', function() {
-    it('should return running if build is running', function () {
+    it('should have lastStatus building if build is running', function () {
         var config = {
             'baseUrl': 'http://build.southsidesoft.com:81/',
             'user': 'yyy',
@@ -77,10 +77,11 @@ describe('Configuration', function() {
 
 
         var configuration = new Configuration(config);
-        configuration.checkStatus(teamCityStatus).should.equal(status.status.BUILDING);
+        configuration.checkStatus(teamCityStatus);
+        configuration.lastStatus.should.equal(status.status.BUILDING);
     });
 
-    it('should return success if build is successful', function () {
+    it('should have lastStatus success if build is successful', function () {
         var config = {
             'baseUrl': 'http://build.southsidesoft.com:81/',
             'user': 'yyy',
@@ -148,10 +149,11 @@ describe('Configuration', function() {
 
 
         var configuration = new Configuration(config);
-        configuration.checkStatus(teamCityStatus).should.equal(status.status.SUCCESS);
+        configuration.checkStatus(teamCityStatus);
+        configuration.lastStatus.should.equal(status.status.SUCCESS);
     });
 
-    it('should return failure if build failed', function () {
+    it('should have last status failure if build failed', function () {
         var config = {
             'baseUrl': 'http://build.southsidesoft.com:81/',
             'user': 'yyy',
@@ -219,6 +221,7 @@ describe('Configuration', function() {
 
 
         var configuration = new Configuration(config);
-        configuration.checkStatus(teamCityStatus).should.equal(status.status.FAILURE);
+        configuration.checkStatus(teamCityStatus);
+        configuration.lastStatus.should.equal(status.status.FAILURE);
     });
 });
