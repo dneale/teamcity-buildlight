@@ -1,7 +1,7 @@
 {
-    "baseUrl": "http://myteamcity/",
-    "user": "xxx",
-    "pass": "yyy",
+    "baseUrl": "http://build.dev.blinds.com:81/",
+    "user": "tcabanski",
+    "pass": "bluehook66691",
     "configurations": [
         {
             "id": "bt2",
@@ -9,10 +9,6 @@
         },
         {
             "id": "bt17",
-            "canTurnRed": false
-        },
-        {
-            "id": "Autobahn_SeleniumTests",
             "canTurnRed": false
         }
     ]

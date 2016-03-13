@@ -10,6 +10,8 @@ function Configuration(config){
 Configuration.prototype.checkStatus = function(teamCityStatus) {
     this.lastStatus = status.status.UNKNOWN;
 
+    console.log(JSON.stringify(teamCityStatus));
+
     if (teamCityStatus === undefined){
         this.lastStatus = status.status.UNKNOWN;
     } else if (teamCityStatus.state === 'running'){
