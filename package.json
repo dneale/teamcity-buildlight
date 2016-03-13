@@ -13,16 +13,16 @@
     "gulp": "^3.9.1",
     "mocha": "^2.4.5",
     "should": "^8.2.2",
-    "grunt-mocha-test": "0.10.x"
+    "gulp-mocha": "2.2.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/SouthsideSoftware/teamcity-buildlight"
   },
     "engines": {
-        "node": "v0.10.x"
+        "node": ">=4.0.0"
     },
   "author": "Southside Software LLC <info@southsidesoft.com> (http://www.southsidesoft.com)",
-  "license": "MIT",
+  "license": "GPLv3",
   "keywords": ["teamcity", "delcom", "buildlight"]
 }
