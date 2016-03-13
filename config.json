@@ -1,7 +1,7 @@
 {
     "baseUrl": "http://build.dev.blinds.com:81/",
-    "user": "tcabanski",
-    "pass": "bluehook66691",
+    "user": "",
+    "pass": "",
     "configurations": [
         {
             "id": "bt2",

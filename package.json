@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "A TeamCity build light that works on Raspberry Pi as well as Mac, Linux and PC",
   "dependencies": {
+    "async": "^1.5.2",
     "delcom-indicator": "^1.0.0",
-    "request": "^2.34.0",
     "enum": "^2.3.0",
-    "async": "^1.5.2"
-
+    "request": "^2.34.0"
   },
   "devDependencies": {
-    "babel-core": "^6.7.2",
-    "babel-preset-es2015": "^6.6.0",
     "gulp": "^3.9.1",
     "mocha": "^2.4.5",
     "should": "^8.2.2",
@@ -21,10 +18,18 @@
     "type": "git",
     "url": "https://github.com/SouthsideSoftware/teamcity-buildlight"
   },
-    "engines": {
-        "node": ">=4.0.0"
-    },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "author": "Southside Software LLC <info@southsidesoft.com> (http://www.southsidesoft.com)",
-  "license": "GPLv3",
-  "keywords": ["teamcity", "delcom", "buildlight"]
+  "license": "GPL-3.0",
+  "keywords": [
+    "teamcity",
+    "delcom",
+    "buildlight"
+  ],
+  "scripts": {
+    "server": "babel-node ./server.js",
+    "b": "babel-node"
+  }
 }

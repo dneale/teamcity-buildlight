@@ -1,7 +1,8 @@
-var request = require('request');
+"use strict";
+
 var ConfigurationCollection = require('./ConfigurationCollection');
 var TeamCityStatusChecker = require('./TeamCityStatusChecker');
-var DelcomIndicator = require('delcom-indicator');
+var DelcomIndicator = require('delcom-indicator/index');
 var config = require('./config.json');
 
 var pollInterval = 10 * 1000;
@@ -13,15 +14,15 @@ delcomIndicator.turnOff();
 var configurations = new ConfigurationCollection(config, new TeamCityStatusChecker(), delcomIndicator);
 checkStatusAndSetLight();
 
-setInterval(function(){
-    checkStatusAndSetLight();
+setInterval(function () {
+  checkStatusAndSetLight();
 }, pollInterval);
 
-function checkStatusAndSetLight(){
-    configurations.checkStatus();
-    setInterval(function(){
-        configurations.displayStatus();
-    }, lightDelay);
+function checkStatusAndSetLight() {
+  configurations.checkStatus();
+  setInterval(function () {
+    configurations.displayStatus();
+  }, lightDelay);
 }
 
 
