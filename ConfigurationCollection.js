@@ -53,32 +53,40 @@ class ConfigurationCollection {
 
     if (statusToDisplay === buildStatus.status.UNKNOWN && this.lastStatus !== buildStatus.status.UNKNOWN) {
       this.lastStatus = buildStatus.status.UNKNOWN;
-      if (this.delcomIndicator !== undefined) {
+      if (this.delcomIndicator !== undefined && this.delcomIndicator.isOpen()) {
         this.delcomIndicator.turnOff();
+      } else {
+        console.log('DELCOM NOT CONNECTED: Light Off');
       }
     } else if (statusToDisplay === buildStatus.status.BUILDING && this.lastStatus !== buildStatus.status.BUILDING) {
       this.lastStatus = buildStatus.status.BUILDING;
-      if (this.delcomIndicator !== undefined) {
+      if (this.delcomIndicator !== undefined && this.delcomIndicator.isOpen()) {
         this.delcomIndicator.turnOff();
         this.delcomIndicator.flashBlue();
+      }else {
+        console.log('DELCOM NOT CONNECTED: Flash Blue');
       }
     } else if (statusToDisplay === buildStatus.status.FAILURE && this.lastStatus !== buildStatus.status.FAILURE) {
       this.lastStatus = buildStatus.status.FAILURE;
-      if (this.delcomIndicator !== undefined) {
+      if (this.delcomIndicator !== undefined && this.delcomIndicator.isOpen()) {
         this.delcomIndicator.turnOff();
         this.delcomIndicator.flashRed();
+      } else {
+        console.log('DELCOM NOT CONNECTED: Flash Red');
       }
     } else if (statusToDisplay === buildStatus.status.SUCCESS && this.lastStatus !== buildStatus.status.SUCCESS) {
       this.lastStatus = buildStatus.status.SUCCESS;
-      if (this.delcomIndicator !== undefined) {
+      if (this.delcomIndicator !== undefined && this.delcomIndicator.isOpen()) {
         this.delcomIndicator.turnOff();
         this.delcomIndicator.solidGreen();
+      }else {
+        console.log('DELCOM NOT CONNECTED: Solid Green');
       }
     }
   }
 
   dispose(){
-    if (this.delcomIndicator !== undefined) {
+    if (this.delcomIndicator !== undefined && this.delcomIndicator.isOpen()) {
       this.delcomIndicator.close();
     }
   }

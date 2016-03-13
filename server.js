@@ -9,7 +9,11 @@ var pollInterval = 10 * 1000;
 var lightDelay = 5 * 1000;
 
 var delcomIndicator = new DelcomIndicator();
-delcomIndicator.turnOff();
+if (delcomIndicator.isOpen()) {
+  delcomIndicator.turnOff();
+} else {
+  console.log('DELCOM NOT CONNECTED: Light off');
+}
 
 var configurations = new ConfigurationCollection(config, new TeamCityStatusChecker(), delcomIndicator);
 checkStatusAndSetLight();
