@@ -35,11 +35,5 @@ gulp
 ```
 
 If you are developing for this project, we suggest setting TEAM_CITY_USER and TEAM_CITY_PASS environment variables
-instead of embedding in config.json. A handy shell script, setTestCredentials.sh, is provided. Give it execution permission
-and run it like this:
-
-```shell
-. ./setTestCredentials.sh [user] [password]
-```
-
-if you are using Webstorm, you need to set it in the environment variables section of your run configuration.
+instead of embedding in config.json. if you are using Webstorm, you need to set it in the environment variables section 
+of your run configuration.
