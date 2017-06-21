@@ -56,13 +56,13 @@ ConfigurationCollection.prototype.displayStatus = function() {
         this.lastStatus = buildStatus.status.BUILDING;
         if (this.delcomIndicator !== undefined) {
             this.delcomIndicator.turnOff();
-            this.delcomIndicator.flashBlue();
+            this.delcomIndicator.solidBlue();
         }
     } else if (statusToDisplay === buildStatus.status.FAILURE && this.lastStatus !== buildStatus.status.FAILURE){
         this.lastStatus = buildStatus.status.FAILURE;
         if (this.delcomIndicator !== undefined) {
             this.delcomIndicator.turnOff();
-            this.delcomIndicator.flashRed();
+            this.delcomIndicator.solidRed();
         }
     } else if (statusToDisplay === buildStatus.status.SUCCESS && this.lastStatus !== buildStatus.status.SUCCESS){
         this.lastStatus = buildStatus.status.SUCCESS;
